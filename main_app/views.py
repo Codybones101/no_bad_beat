@@ -10,6 +10,15 @@ Now we can simply “decorate” any view function that requires a user to be lo
 @login_required
 '''
 
+bets = [
+    {'title': 'Team A vs Team B',
+        'team1': "A-Team-Value", 'team2': 'B-Team-Value', 'price': 12
+     },
+    {'title': 'Team C vs Team D',
+        'team1': "C-Team-Value", 'team2': 'D-Team-Value', 'price': 34
+     },
+]
+
 
 def home(request):
     return render(request, 'home.html')
@@ -39,3 +48,9 @@ def signup(request):
     form = UserCreationForm()
     context = {'form': form, 'error_message': error_message}
     return render(request, 'registration/signup.html', context)
+
+
+def bets_index(request):
+    return render(request, 'bets/index.html', {
+        'bets': bets
+    })
