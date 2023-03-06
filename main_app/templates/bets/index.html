@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Game List</h1>
+
+{% for bet in bets%}
+<div class="card">
+    <div class="card-content">
+        <span class="card-title">{{ bet.title }}</span>
+        <p>Team 1: {{ bet.team1 }}</p>
+        <p>Team 2: {{ bet.team2 }}</p>
+        <p>Price: ${{ bet.price }}</p>
+    </div>
+</div>
+{% endfor %}
+
+{% endblock %}
