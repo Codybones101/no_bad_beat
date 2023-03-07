@@ -4,19 +4,6 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-import requests
-from .models import Game
-
-# bets = [
-#     {'title': 'Team A vs Team B',
-#         'team1': "A-Team-Value", 'team2': 'B-Team-Value', 'price': 12
-#      },
-#     {'title': 'Team C vs Team D',
-#         'team1': "C-Team-Value", 'team2': 'D-Team-Value', 'price': 34
-#      },
-# ]
-
-
 def home(request):
     return render(request, 'home.html')
 
@@ -51,12 +38,3 @@ def bets_index(request):
     return render(request, 'bets/index.html', {
         'bets': bets
     })
-
-
-   
-
-
-    # print(gameId, away_team, home_team, away_price, home_price)
-
-
-

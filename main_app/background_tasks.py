@@ -1,8 +1,8 @@
 import requests
-# from ..models import Game
-# from main_app.models import Game
-from .models import Game
 from datetime import datetime
+from apscheduler.schedulers.background import BackgroundScheduler
+from main_app.nba_api import Game
+
 
 def update_games():
     r = requests.get('https://api.the-odds-api.com/v4/sports/basketball_nba/odds/?apiKey=78f8895d14199e90b32479676f2e1912&regions=us&oddsFormat=american&bookmakers=draftkings')
@@ -37,3 +37,8 @@ def update_games():
                 home_price = outcomes[1]['price'],
             )
             new_game.save()
+
+def start():
+  scheduler = BackgroundScheduler()
+  scheduler.add_job(update_games, 'interval', minutes=15)
+  scheduler.start()
