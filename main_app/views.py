@@ -5,12 +5,13 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Game
 from .forms import CommentForm
+from django.views.generic.edit import UpdateView, DeleteView
+
 
 def home(request):
     return render(request, 'home.html')
 
 
-@login_required
 def about(request):
     return render(request, 'about.html')
 
@@ -42,17 +43,43 @@ def games_index(request):
         'games': games
     })
 
+
+@login_required
 def games_detail(request, game_id):
     game = Game.objects.get(id=game_id)
     comment_form = CommentForm()
     return render(request, 'games/detail.html', {
-         'game': game 
+        'game': game, 'comment_form': comment_form
     })
 
+
+@login_required
 def add_comment(request, game_id):
     form = CommentForm(request.POST)
     if form.is_valid():
         new_comment = form.save(commit=False)
+        new_comment.comment_user = request.user
         new_comment.game_id = game_id
         new_comment.save()
     return redirect('detail', game_id=game_id)
+
+
+# def CommentEdit(request, comment_id):
+#     comment = CommentForm.objects.get(id=comment_id)
+#     if request.method == 'POST':
+#         form = CommentForm(request.POST, instance=comment)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('/games/<int:game_id>')
+#     else:
+#         form = CommentForm(instance=comment)
+#         return render(request, 'comments/edit.html', {'form': form})
+
+# class CommentUpdate(UpdateView):
+#     model = CommentForm
+#     fields = ['comment']
+
+
+# class CommentDelete(DeleteView):
+#     model = CommentForm
+#     success_url = '/games/<int:game_id>'
