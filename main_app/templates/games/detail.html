@@ -28,9 +28,31 @@
 </div>
 <div class="row">
   <h3 class="center-align">Comments</h3>
+  <form action="{% url 'add_comment' game.id %}" method="POST">
+    {% csrf_token %}
+    {{ comment_form.as_p }}
+    <input type="submit" class="btn" value="Add Comment" class="center-align">
+  </form>
+  <br>
 </div>
+<div class="col s6">
+  <table class="striped">
+    <thead>
+      <tr>
+        <th>Comments:</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for com in game.comment_set.all %}
+      <tr>
+        <td>{{com.comment}}</td>
+        <td>{{com.comment_user}}</td>
+        <a href="{% url 'comment_update' comment.id %}"></a>
+        <a href="{% url 'delete_comment' comment.id %}"></a>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
 
 
-
-
-{% endblock %}
+  {% endblock %}
