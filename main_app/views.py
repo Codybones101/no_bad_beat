@@ -3,7 +3,7 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Game
+from .models import Game, Comment
 from .forms import CommentForm
 from django.views.generic.edit import UpdateView, DeleteView
 
@@ -64,22 +64,12 @@ def add_comment(request, game_id):
     return redirect('detail', game_id=game_id)
 
 
-# def CommentEdit(request, comment_id):
-#     comment = CommentForm.objects.get(id=comment_id)
-#     if request.method == 'POST':
-#         form = CommentForm(request.POST, instance=comment)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('/games/<int:game_id>')
-#     else:
-#         form = CommentForm(instance=comment)
-#         return render(request, 'comments/edit.html', {'form': form})
-
-# class CommentUpdate(UpdateView):
-#     model = CommentForm
-#     fields = ['comment']
+class CommentUpdate(UpdateView):
+    model = Comment
+    fields = ['comment']
+    success_url = '/games/{game_id}'
 
 
-# class CommentDelete(DeleteView):
-#     model = CommentForm
-#     success_url = '/games/<int:game_id>'
+class CommentDelete(DeleteView):
+    model = Comment
+    success_url = '/games/{game_id}'
