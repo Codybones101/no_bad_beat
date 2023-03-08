@@ -47,8 +47,8 @@
       <tr>
         <td>{{com.comment}}</td>
         <td>{{com.comment_user}}</td>
-        <a href="{% url 'comment_update' comment.id %}"></a>
-        <a href="{% url 'delete_comment' comment.id %}"></a>
+        <td><a href="{% url 'comment_update' com.id %}">EDIT</a>
+        <td><a href="{% url 'comment_delete' com.id %}">DELETE</a></td>
       </tr>
       {% endfor %}
     </tbody>
