@@ -1,33 +1,34 @@
-{% extends 'base.html' %}
-{% block content %}
+{% extends 'base.html' %} {% block content %}
 
-<h1>Game Detail</h1>
+<h1 class="center-align">Game Detail</h1>
 <div class="row">
-    <div class="col s5" style="font-size: 22px">
-        <div class="card">
-            <div class="card-content">
-                <span class="card-title" style="font-size: 30px; font-weight: bold;">{{ game.away_team }}</span>
-                <p>{{game.away_price}}</p>
-            </div>
-        </div>
+  <div class="col s5" style="font-size: 22px">
+    <div class="card">
+      <div class="card-content">
+        <span class="card-title" style="font-size: 30px; font-weight: bold"
+          >{{ game.away_team }}</span
+        >
+        <p>{{game.away_price}}</p>
+      </div>
     </div>
+  </div>
 
-    <h3 class="col s1" style="text-align: center;">vs</h3>
+  <h3 class="col s1" style="text-align: center">vs</h3>
 
-    <div class="col s5" style="text-align: right; font-size: 22px">
-        <div class="card">
-            <div class="card-content">
-                <span class="card-title" style="font-size: 30px; font-weight: bold;">{{ game.home_team }}</span>
-                <p>
-                    {{game.home_price}}
-                </p>
-            </div>
-        </div>
-        <br>
+  <div class="col s5" style="text-align: right; font-size: 22px">
+    <div class="card">
+      <div class="card-content">
+        <span class="card-title" style="font-size: 30px; font-weight: bold"
+          >{{ game.home_team }}</span
+        >
+        <p>{{game.home_price}}</p>
+      </div>
     </div>
+    <br />
+  </div>
 </div>
-
-
-
+<div class="row">
+  <h3 class="center-align">Comments</h3>
+</div>
 
 {% endblock %}

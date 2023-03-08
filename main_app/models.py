@@ -10,3 +10,7 @@ class Game(models.Model):
     home_price = models.IntegerField()
 
     
+class Comment(models.Model):
+    comment_user = models.CharField(max_length=100)
+    comment_date = models.DateField(blank=True)
+    comment = models.TextField(max_length=250)

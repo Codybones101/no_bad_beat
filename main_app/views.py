@@ -4,6 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Game
+from .forms import CommentForm
 
 def home(request):
     return render(request, 'home.html')
@@ -43,6 +44,15 @@ def games_index(request):
 
 def games_detail(request, game_id):
     game = Game.objects.get(id=game_id)
+    comment_form = CommentForm()
     return render(request, 'games/detail.html', {
          'game': game 
     })
+
+def add_comment(request, game_id):
+    form = CommentForm(request.POST)
+    if form.is_valid():
+        new_comment = form.save(commit=False)
+        new_comment.game_id = game_id
+        new_comment.save()
+    return redirect('detail', game_id=game_id)
