@@ -8,3 +8,5 @@ class Game(models.Model):
     home_team = models.CharField(max_length=100)
     away_price = models.IntegerField()
     home_price = models.IntegerField()
+
+    

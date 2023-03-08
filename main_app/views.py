@@ -3,6 +3,7 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from .models import Game
 
 def home(request):
     return render(request, 'home.html')
@@ -34,7 +35,14 @@ def signup(request):
     return render(request, 'registration/signup.html', context)
 
 
-def bets_index(request):
-    return render(request, 'bets/index.html', {
-        'bets': bets
+def games_index(request):
+    games = Game.objects.all()
+    return render(request, 'games/index.html', {
+        'games': games
+    })
+
+def games_detail(request, game_id):
+    game = Game.objects.get(id=game_id)
+    return render(request, 'games/detail.html', {
+         'game': game 
     })
