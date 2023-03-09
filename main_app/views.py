@@ -3,10 +3,10 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Game, Comment
+from .models import Game, Comment, Bet
 from .forms import CommentForm
+from .forms import BetForm
 from django.views.generic.edit import UpdateView, DeleteView
-
 
 def home(request):
     return render(request, 'home.html')
@@ -43,8 +43,6 @@ def games_index(request):
         'games': games
     })
 
-
-@login_required
 def games_detail(request, game_id):
     game = Game.objects.get(id=game_id)
     comment_form = CommentForm()
@@ -63,6 +61,15 @@ def add_comment(request, game_id):
         new_comment.save()
     return redirect('detail', game_id=game_id)
 
+@login_required
+def add_bet(request, game_id):
+    form = BetForm(request.POST)
+    if form.is_valid():
+        new_bet = form.save(commit=False)
+        new_bet.bet_user = request.user
+        new_bet.game_id = game_id
+        new_bet.save()
+    return redirect('detail', game_id=game_id)
 
 class CommentUpdate(UpdateView):
     model = Comment
