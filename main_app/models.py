@@ -1,4 +1,5 @@
 from django.db import models
+from django import forms
 
 # Create your models here.
 
@@ -16,6 +17,7 @@ class Comment(models.Model):
     comment_user = models.CharField(max_length=100)
     comment_date = models.DateField(auto_now_add=True, blank=True)
     comment = models.TextField(max_length=250)
+    game_choice = models.CharField(max_length=100)
     game = models.ForeignKey(Game, on_delete=models.CASCADE)
 
 
