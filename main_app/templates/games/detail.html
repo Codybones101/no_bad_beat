@@ -1,39 +1,53 @@
-{% extends 'base.html' %}
-{% block content %}
+{% extends 'base.html' %} {% block content %}
 
 <h1>Game Detail</h1>
+<!-- AWAY TEAM -->
 <div class="row">
   <div class="col s5" style="font-size: 22px">
     <div class="card">
+      <div class="card-header"></div>
       <div class="card-content">
-        <span class="card-title" style="font-size: 30px; font-weight: bold;">{{ game.away_team }}</span>
+        <span class="card-title" style="font-size: 30px; font-weight: bold">
+          {{ game.away_team }}
+        </span>
         <p>{{game.away_price}}</p>
       </div>
     </div>
   </div>
 
-  <h3 class="col s1" style="text-align: center;">vs</h3>
-
+  <h3 class="col s1" style="text-align: center">vs</h3>
+  <!-- HOME TEAM INFO -->
   <div class="col s5" style="text-align: right; font-size: 22px">
     <div class="card">
+      <div class="card-header"></div>
       <div class="card-content">
-        <span class="card-title" style="font-size: 30px; font-weight: bold;">{{ game.home_team }}</span>
-        <p>
-          {{game.home_price}}
-        </p>
+        <span class="card-title" style="font-size: 30px; font-weight: bold"
+          >{{ game.home_team }}</span
+        >
+        <p>{{game.home_price}}</p>
       </div>
     </div>
-    <br>
+    <br />
   </div>
 </div>
+
+<!-- BETTING SECTION -->
+<!-- <div class="row">
+  <h3 class="center-align">Place A Bet</h3>
+  <form action="{% url 'add_bet' game.id %}" method="POST">
+    {% csrf_token %} {{ bet_form.as_p }}
+    <input type="submit" class="btn" value="Add Bet" class="center-align" />
+  </form>
+</div>
+<br /> -->
+<!-- Comment Section -->
 <div class="row">
   <h3 class="center-align">Comments</h3>
   <form action="{% url 'add_comment' game.id %}" method="POST">
-    {% csrf_token %}
-    {{ comment_form.as_p }}
-    <input type="submit" class="btn" value="Add Comment" class="center-align">
+    {% csrf_token %} {{ comment_form.as_p }}
+    <input type="submit" class="btn" value="Add Comment" class="center-align" />
   </form>
-  <br>
+  <br />
 </div>
 <div class="col s6">
   <table class="striped">
@@ -47,12 +61,12 @@
       <tr>
         <td>{{com.comment}}</td>
         <td>{{com.comment_user}}</td>
-        <td><a href="{% url 'comment_update' com.id %}">EDIT</a>
+        <td><a href="{% url 'comment_update' com.id %}">EDIT</a></td>
         <td><a href="{% url 'comment_delete' com.id %}">DELETE</a></td>
       </tr>
       {% endfor %}
     </tbody>
   </table>
 
-
   {% endblock %}
+</div>
