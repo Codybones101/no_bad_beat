@@ -58,6 +58,7 @@ def add_comment(request, game_id):
         new_comment = form.save(commit=False)
         new_comment.comment_user = request.user
         new_comment.game_id = game_id
+        new_comment.game_choice = request.POST.get('game_choice')
         new_comment.save()
     return redirect('detail', game_id=game_id)
 
