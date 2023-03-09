@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>No Bad Beat</title>
-    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="/static/css/style.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
@@ -15,32 +15,36 @@
   </head>
 
   <body>
+    <div">
     <header class="navbar-fixed">
       <nav>
-        <div class="nav-wrapper">
+        <div class="nav-wrapper green accent-3">
           <ul>
             <li>
-              <a href="/" class="left brand-logo">&nbsp;&nbsp;No Bad Beat</a>
+              <a href="/" class="left brand-logo" style="color: black">&nbsp;&nbsp;No Bad Beat</a>
             </li>
           </ul>
           <ul class="right">
-            <li><a href="/about">About</a></li>
-            <li><a href="/games">View All Games</a></li>
+            <li><a href="/about" style="color: black">About</a></li>
+            <li><a href="/games" style="color: black">View All Games</a></li>
             {% if user.is_authenticated %}
-            <li><a href="{% url 'logout' %}">Log Out</a></li>
+            <li><a href="{% url 'logout' %}" style="color: black">Log Out</a></li>
             {% else %}
-            <li><a href="{% url 'signup' %}">Sign Up</a></li>
-            <li><a href="{% url 'login' %}">Log In</a></li>
+            <li><a href="{% url 'signup' %}" style="color: black">Sign Up</a></li>
+            <li><a href="{% url 'login' %}" style="color: black">Log In</a></li>
             {% endif %}
           </ul>
         </div>
       </nav>
     </header>
+    <div style="display: flex;flex-direction: column; height: 87vh; justify-content: center; align-items: center">
     <main class="container">{% block content %} {% endblock %}</main>
-    <footer class="page-footer">
-      <div class="right">
+    <footer class="page-footer green accent-3" style="position: absolute; bottom: 0; text-align: right; margin-top: 3vmin; width: 100vw; height: 6vmin; color: black; " >
+      
         All Rights Reserved, &copy; 2023 No Bad Beat&nbsp;
-      </div>
+      
     </footer>
+    </div>
+  </div>
   </body>
 </html>
