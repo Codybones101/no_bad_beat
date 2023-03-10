@@ -8,6 +8,10 @@ from .forms import CommentForm
 from .forms import BetForm
 from django.views.generic.edit import UpdateView, DeleteView
 
+team_list = [
+    {'Charlotte Hornets': './static/images/nba_logos/AtlantaHawks.png'}
+]
+
 def home(request):
     return render(request, 'home.html')
 
@@ -47,7 +51,7 @@ def games_detail(request, game_id):
     game = Game.objects.get(id=game_id)
     comment_form = CommentForm()
     return render(request, 'games/detail.html', {
-        'game': game, 'comment_form': comment_form
+        'game': game, 'comment_form': comment_form, 'team_list': team_list
     })
 
 
