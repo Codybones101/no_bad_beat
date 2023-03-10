@@ -1,24 +1,26 @@
 {% extends 'base.html' %} {% block content %}
 
 <div class="container-fluid">
-  <h1 class="text-center mt-5">Log In</h1>
   <div
     style="
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      height: 70vh;
+      height: 83vh;
     "
     class="m-2 p-5"
   >
-    <form method="POST" action="{% url 'login' %}">
-      <div class="mb-3">{% csrf_token %} {{ form.as_p }}</div>
-      <input type="hidden" name="next" value="{{ next }}" />
-      <button type="submit" class="btn btn-primary" style="width: 100%">
-        Log In
-      </button>
-    </form>
+    <h1 class="text-center m-5">Log In</h1>
+    <div class="card p-5">
+      <form method="POST" action="{% url 'login' %}">
+        <div class="mb-3">{% csrf_token %} {{ form.as_p }}</div>
+        <input type="hidden" name="next" value="{{ next }}" />
+        <button type="submit" class="btn btn-primary" style="width: 100%">
+          Log In
+        </button>
+      </form>
+    </div>
   </div>
 </div>
 {% endblock %}

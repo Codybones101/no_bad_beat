@@ -1,4 +1,4 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %} {% block content %} {% load static %}
 
 <style>
   .card {
@@ -19,9 +19,9 @@
     <div class="card-body">
       <span class="card-title">{{ game.game_date }}</span>
       <div class="text-center">
-        <p>{{ game.away_team }}</p>
-        <p>@</p>
-        <p>{{ game.home_team }}</p>
+        <h3>{{ game.away_team }}</h3>
+        <p style="font-size: 30px">@</p>
+        <h3>{{ game.home_team }}</h3>
       </div>
     </div>
   </a>
