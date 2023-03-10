@@ -1,14 +1,30 @@
-{% extends 'base.html' %}
-
-{% block content %}
-
-<h1>Delete Comment</h1>
-<h4>Are you sure you want to delete your comment?</h4>
-
-<form action="" method="POST">
-    {% csrf_token %}
-    <input type="submit" value="Yes - Delete!" class="btn">
-    <a href="/games">Cancel</a>
-</form>
+{% extends 'base.html' %} {% block content %}
+<div
+  class="container"
+  style="
+    height: 88vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  "
+>
+  <div class="row">
+    <div class="col">
+      <h1 class="text-center">Delete Comment</h1>
+      <h4>Are you sure you want to delete your comment?</h4>
+      <form action="" method="POST">
+        {% csrf_token %}
+        <input
+          type="submit"
+          value="Yes - Delete!"
+          class="btn btn-danger"
+          style="width: 80%"
+        />
+        <a href="/games" class="btn btn-warning">Cancel</a>
+      </form>
+    </div>
+  </div>
+</div>
 
 {% endblock %}

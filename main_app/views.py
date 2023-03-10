@@ -8,9 +8,38 @@ from .forms import CommentForm
 from .forms import BetForm
 from django.views.generic.edit import UpdateView, DeleteView
 
-team_list = [
-    {'Charlotte Hornets': './static/images/nba_logos/AtlantaHawks.png'}
-]
+team_list = {
+    'Atlanta Hawks': '../static/images/nba_logos/AtlantaHawks.png',
+    'Boston Celtics': '../static/images/nba_logos/BostonCeltics.png',
+    'Brooklyn Nets': '../static/images/nba_logos/BrooklynNets.png',
+    'Charlotte Hornets': '../static/images/nba_logos/CharoletteHornets.png',
+    'Chicago Bulls': '../static/images/nba_logos/ChicagoBulls.png',
+    'Clevland Cavaliers': '../static/images/nba_logos/ClevlandCavaliers.png',
+    'Dallas Maverics': '../static/images/nba_logos/DallasMaverics.png',
+    'Denver Nuggets': '../static/images/nba_logos/DenverNuggets.png',
+    'Detroit Pistons': '../static/images/nba_logos/DetroitPistons.png',
+    'Golden State Warriors': '../static/images/nba_logos/GoldenStateWarriors.png',
+    'Houston Rockets': '../static/images/nba_logos/HoustonRockets.png',
+    'Indiana Pacers': '../static/images/nba_logos/IndianaPacers.png',
+    'Los Angeles Clippers': '../static/images/nba_logos/LosAngelesClippers.png',
+    'Los Angeles Lakers': '../static/images/nba_logos/LosAngelesLakers.png',
+    'Memphis Grizzlies': '../static/images/nba_logos/MemphisGrizzlies.png',
+    'Miami Heat': '../static/images/nba_logos/MiamiHeat.png',
+    'Milwaukee Bucks': '../static/images/nba_logos/MilwaukeeBucks.png',
+    'Minnesota Timberwolves': '../static/images/nba_logos/MinnesotaTimberwolves.png',
+    'New Oreleans Pelicans': '../static/images/nba_logos/NewOreleansPelicans.png',
+    'New York Knicks': '../static/images/nba_logos/NewYorkKnicks.png',
+    'Oklahoma City Thunder': '../static/images/nba_logos/OklahomaCityThunder.png',
+    'Orlando Magic': '../static/images/nba_logos/OrlandoMagic.png',
+    'Philadelphia 76ers': '../static/images/nba_logos/Philadelphia76ers.png',
+    'Phoenix Suns': '../static/images/nba_logos/PhoenixSuns.png',
+    'Portland Trail Blazers': '../static/images/nba_logos/PortlandTrailBlazers.png',
+    'Sacramento Kings': '../static/images/nba_logos/SacramentoKings.png',
+    'San Antonio Spurs': '../static/images/nba_logos/SanAntonioSpurs.png',
+    'Toronto Raptors': '../static/images/nba_logos/TorontoRaptors.png',
+    'Utah Jazz': '../static/images/nba_logos/UtahJazz.png',
+    'Washington Wizards': '../static/images/nba_logos/WashingtonWizards.png',
+}
 
 def home(request):
     return render(request, 'home.html')
@@ -51,7 +80,7 @@ def games_detail(request, game_id):
     game = Game.objects.get(id=game_id)
     comment_form = CommentForm()
     return render(request, 'games/detail.html', {
-        'game': game, 'comment_form': comment_form, 'team_list': team_list
+        'game': game, 'comment_form': comment_form, 'away_team': team_list[game.away_team], 'home_team': team_list[game.home_team]
     })
 
 

@@ -1,13 +1,32 @@
-{% extends 'base.html' %}
-{% block content %}
+{% extends 'base.html' %} {% block content %}
 
-<h1>Edit Comment</h1>
+<div
+  class="container"
+  style="
+    height: 87vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  "
+>
+  <h1 style="margin-left: 8.5vmin">Edit Comment</h1>
+  <div class="row">
+    <div class="col">
+      <form action="" method="POST">
+        {% csrf_token %}
+        <table>
+          {{ form.as_table }}
+        </table>
+        <input
+          type="submit"
+          value="Submit!"
+          class="btn btn-info"
+          style="margin-left: 8.75vmin; width: 80%; text-align: center"
+        />
+      </form>
+    </div>
+  </div>
+</div>
 
-<form action="" method="POST">
-    {% csrf_token %}
-    <table>
-        {{ form.as_table }}
-    </table>
-    <input type="submit" value="Submit!" class="btn">
-</form>
 {% endblock %}
