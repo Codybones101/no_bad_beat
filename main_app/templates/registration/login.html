@@ -1,13 +1,23 @@
-{% extends 'base.html' %}
-{% block content %}
+{% extends 'base.html' %} {% block content %}
 
-<h1>Log In</h1>
-
-<form method="POST" action="{% url 'login' %}">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="hidden" name="next" value="{{ next }}">
-    <button type="submit" class="btn">Log In</button>
-</form>
-
+<div class="container-fluid">
+  <h1 class="text-center mt-5">Log In</h1>
+  <div
+    style="
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    "
+    class="m-2 p-5"
+  >
+    <form method="POST" action="{% url 'login' %}">
+      <div class="mb-3">{% csrf_token %} {{ form.as_p }}</div>
+      <input type="hidden" name="next" value="{{ next }}" />
+      <button type="submit" class="btn btn-primary" style="width: 100%">
+        Log In
+      </button>
+    </form>
+  </div>
+</div>
 {% endblock %}

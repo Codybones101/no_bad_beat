@@ -1,18 +1,29 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} {% block content %}
 
-{% block content %}
-<h1>Game List</h1>
+<style>
+  .card {
+    box-shadow: 10px 5px 5px black;
+    background-color: rgb(243, 240, 240);
+  }
+
+  .card:hover {
+    background-color: rgb(10, 205, 10);
+  }
+</style>
+
+<h1 class="text-center m-3 p-2">Game List</h1>
 
 {% for game in games %}
-<div class="card">
-    <a href="/games/{{ game.id }}">
-    <div class="card-content">
-        <span class="card-title">{{ game.game_date }}</span>
-        <p>Team 1: {{ game.away_team }}</p>
-        <p>Team 2: {{ game.home_team }}</p>
+<div class="card m-3">
+  <a href="/games/{{ game.id }}" style="color: inherit; text-decoration: none">
+    <div class="card-body">
+      <span class="card-title">{{ game.game_date }}</span>
+      <div class="text-center">
+        <p>{{ game.away_team }}</p>
+        <p>@</p>
+        <p>{{ game.home_team }}</p>
+      </div>
     </div>
-    </a>
+  </a>
 </div>
-{% endfor %}
-
-{% endblock %}
+{% endfor %} {% endblock %}
