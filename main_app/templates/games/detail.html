@@ -1,11 +1,15 @@
 {% extends 'base.html' %} {% block content %}
-
-<h1>Game Detail</h1>
+<style>
+  .card {
+    box-shadow: 10px 5px 5px black;
+    background-color: rgb(243, 240, 240);
+  }
+</style>
+<h1 class="text-center mt-5">Game Detail</h1>
 <!-- AWAY TEAM -->
 <div class="row">
   <div class="col s5" style="font-size: 22px">
     <div class="card">
-      <div class="card-header"></div>
       <div class="card-content">
         <span class="card-title" style="font-size: 30px; font-weight: bold">
           {{ game.away_team }}
@@ -19,12 +23,11 @@
   <!-- HOME TEAM INFO -->
   <div class="col s5" style="text-align: right; font-size: 22px">
     <div class="card">
-      <div class="card-header"></div>
       <div class="card-content">
         <span class="card-title" style="font-size: 30px; font-weight: bold"
           >{{ game.home_team }}</span
         >
-        <p>{{game.home_price}}</p>
+        <p class="text-left">{{game.home_price}}</p>
       </div>
     </div>
     <br />
